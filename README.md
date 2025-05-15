@@ -1,2 +1,2 @@
 # bm
-Bookmarks for directories paths
+Simple bookmark tool for navigating the file system
