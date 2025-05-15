@@ -1,0 +1,7 @@
+Package: bm
+Version: 0.1.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Maintainer: Roman Chudov <roman.chudov@gmail.com>
+Description: Simple bookmark tool for file system navigation
