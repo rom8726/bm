@@ -43,6 +43,11 @@ prepare: build
 
 	chmod +x $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
 
+	echo '#!/bin/sh' > $(PKG_DIR)/DEBIAN/postinst
+	echo 'chmod +x /etc/profile.d/$(APP_NAME).sh' >> $(PKG_DIR)/DEBIAN/postinst
+	echo 'echo "✅ Installed. Please, run: source /etc/profile.d/$(APP_NAME).sh"' >> $(PKG_DIR)/DEBIAN/postinst
+	chmod +x $(PKG_DIR)/DEBIAN/postinst
+
 deb: prepare
 	dpkg-deb --build $(PKG_DIR)
 
