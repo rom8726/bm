@@ -17,7 +17,7 @@ prepare: build
 	mkdir -p $(PKG_DIR)/usr/bin
 	mkdir -p $(PKG_DIR)/etc/profile.d
 
-	cp $(BUILD_DIR)/$(APP_NAME) $(PKG_DIR)/usr/bin/$(APP_NAME_BIN)
+	cp $(BUILD_DIR)/$(APP_NAME_BIN) $(PKG_DIR)/usr/bin/$(APP_NAME_BIN)
 
 	echo "Package: $(APP_NAME)" > $(PKG_DIR)/DEBIAN/control
 	echo "Version: $(VERSION)" >> $(PKG_DIR)/DEBIAN/control
@@ -31,11 +31,11 @@ prepare: build
 	echo '' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
 	echo 'bm() {' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
 	echo '  if [ "$$1" = "-s" ]; then' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
-	echo '    command bm-util -s "$$2"' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
+	echo '    command bm-util save "$$2"' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
 	echo '  elif [ "$$1" = "-d" ]; then' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
-	echo '    command bm-util -d "$$2"' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
+	echo '    command bm-util delete "$$2"' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
 	echo '  elif [ "$$1" = "-l" ]; then' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
-	echo '    command bm-util -l' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
+	echo '    command bm-util list' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
 	echo '  else' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
 	echo '    cd "$$(command bm-util go "$$1")"' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
 	echo '  fi' >> $(PKG_DIR)/etc/profile.d/$(APP_NAME).sh
